@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  mysqlDB:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - mi_volumenCMB:/var/lib/mysql
+    networks:
+      - mi_redCMB
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - mi_redCMB
+
+volumes:
+  mi_volumenCMB:
+networks:
+  mi_redCMB:
